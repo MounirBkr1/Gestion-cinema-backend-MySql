@@ -1,5 +1,6 @@
 package com.mnr.gestioncinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Place implements Serializable {
     private Salle salle;
 
     @OneToMany(mappedBy="place")
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private Collection<Ticket> tickets;
 
 }

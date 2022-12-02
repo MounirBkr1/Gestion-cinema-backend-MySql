@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.math.BigDecimal;
 
 @RepositoryRestResource
-public interface ProjectionRepository extends JpaRepository<Projection, BigDecimal> {
+public interface ProjectionRepository extends JpaRepository<Projection, Long> {
 }

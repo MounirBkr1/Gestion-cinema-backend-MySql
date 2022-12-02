@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.math.BigDecimal;
 
 @RepositoryRestResource
-public interface SeanceRepository extends JpaRepository<Seance, BigDecimal> {
+public interface SeanceRepository extends JpaRepository<Seance, Long> {
 }

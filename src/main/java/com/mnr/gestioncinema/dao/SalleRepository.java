@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.math.BigDecimal;
 
 @RepositoryRestResource
-public interface SalleRepository extends JpaRepository<Salle, BigDecimal> {
+public interface SalleRepository extends JpaRepository<Salle, Long> {
 }

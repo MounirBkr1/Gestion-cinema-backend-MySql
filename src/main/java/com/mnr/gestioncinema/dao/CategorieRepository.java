@@ -9,5 +9,5 @@ import java.math.BigDecimal;
 
 //add api rest
 @RepositoryRestResource
-public interface CategorieRepository extends JpaRepository<Categorie, BigDecimal> {
+public interface CategorieRepository extends JpaRepository<Categorie, Long> {
 }

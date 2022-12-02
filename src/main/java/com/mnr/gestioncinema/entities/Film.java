@@ -1,5 +1,6 @@
 package com.mnr.gestioncinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +10,8 @@ import java.util.Date;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Film implements Serializable {
@@ -25,6 +27,8 @@ public class Film implements Serializable {
     private String photo;
 
     @OneToMany(mappedBy="film")
+    //eviter les boucles infinies ds les associations biderectionnelle
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private Collection<Projection> projections;
 
     @ManyToOne

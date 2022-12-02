@@ -5,7 +5,7 @@ import com.mnr.gestioncinema.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+//import javax.transaction.Transactional;
 import org.springframework.transaction.annotation.Transactional;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -64,11 +64,11 @@ public class CinemaInitServiceImpl implements ICinemaInitService{
 
     @Override
     public void initSalles() {
-        cinemaRepository.findAll().forEach(c ->{
-            for(int i=0; i<c.getNombreSalles(); i++){
+        cinemaRepository.findAll().forEach(cinema ->{
+            for(int i=0; i<cinema.getNombreSalles(); i++){
                 Salle salle=new Salle();
                 salle.setName("Salle"+(i+1));
-                salle.setCinema(c);
+                salle.setCinema(cinema);
                 salle.setNombrePlace(15 +(int)(Math.random()*20));
                 salleRepository.save(salle);
             }
@@ -77,11 +77,14 @@ public class CinemaInitServiceImpl implements ICinemaInitService{
 
     @Override
     public void initPlaces() {
-        salleRepository.findAll().forEach(s->{
-            for(int i=0; i<s.getNombrePlace();i++){
+        System.out.println("in init place  ************");
+        salleRepository.findAll().forEach(salle->{
+            System.out.println("in sallarepo  ************");
+            for(int i=0; i<salle.getNombrePlace();i++){
+                System.out.println("*****************boucle for initplace***********");
                 Place place = new Place();
                 place.setNumero(i+1);
-                place.setSalle(s);
+                place.setSalle(salle);
                 placeRepository.save(place);
 
             }
@@ -118,7 +121,7 @@ public class CinemaInitServiceImpl implements ICinemaInitService{
     public void initFilmes() {
         double[] duree=new double[]{1,1.5,2,2.5,3};
         List<Categorie> categories=categorieRepository.findAll();
-        Stream.of("Game of truth", "cartoon","remance","spolitgh","trapped").forEach(titreFilm->{
+        Stream.of("ambulance", "amelie","smile" ,"parasite","smile","vie").forEach(titreFilm->{
             Film film= new Film();
             film.setTitre(titreFilm);
             film.setDuree(duree[new Random().nextInt(duree.length)]);
